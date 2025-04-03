@@ -1,5 +1,5 @@
 import Card from "../Card/Card";
-import './Cards.css';
+import './cards.css';
 
 const Cards =({producto,agregarAlCarrito,agregarFav})=>{
     
