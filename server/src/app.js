@@ -29,6 +29,12 @@ server.use((req, res, next) => {
   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE, PATCH');
   next();
 });
+
+server.get('/', (req, res) => {
+  res.send('✅ Backend WebVentas funcionando correctamente');
+});
+
+
 server.use('/', routes);
 // Manejo de errores
 server.use((err, req, res, next) => {
