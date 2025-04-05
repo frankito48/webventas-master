@@ -20,7 +20,7 @@ server.use(bodyParser.json({ limit: '50mb' }));
 server.use(cookieParser());
 server.use(morgan('dev'));
 
-app.use(cors({
+server.use(cors({
   origin: 'https://amoremiotest.vercel.app', // cambiá por el dominio real de tu frontend en Vercel
   credentials: true
 })); // Aplicar el middleware cors aquí, antes de otros middlewares
