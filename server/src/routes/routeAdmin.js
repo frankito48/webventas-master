@@ -51,7 +51,7 @@ router.post('/confirmacionPedido',async (req,res)=>{
 })
 
 
-router.post('/loginc', (req, res) => {
+router.post('/login', (req, res) => {
   const { password } = req.body;
   if (password === ADMIN_PASSWORD) {
     res.status(200).json({ message: 'Autenticación exitosa' });
