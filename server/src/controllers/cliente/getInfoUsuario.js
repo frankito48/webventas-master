@@ -1,5 +1,5 @@
 const { Cliente } = require('../../db');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 const obtenerInfUsuario = async (correo, contraseña) => {
   try {
