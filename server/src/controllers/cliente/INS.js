@@ -1,6 +1,6 @@
 require('dotenv').config();
 const { Cliente } = require('../../db');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const secretKey = process.env.SECRET_KEY;
 

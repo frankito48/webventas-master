@@ -1,6 +1,6 @@
 const {Cliente} = require('../../db');
 
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const saltRounds = 10; // Número de rondas de hashing
 
 const createNewCliente = async (clienteData) => {
