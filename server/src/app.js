@@ -20,7 +20,10 @@ server.use(bodyParser.json({ limit: '50mb' }));
 server.use(cookieParser());
 server.use(morgan('dev'));
 
-server.use(cors()); // Aplicar el middleware cors aquí, antes de otros middlewares
+app.use(cors({
+  origin: 'https://amoremiotest.vercel.app', // cambiá por el dominio real de tu frontend en Vercel
+  credentials: true
+})); // Aplicar el middleware cors aquí, antes de otros middlewares
 
 server.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', 'http://localhost:3005');
