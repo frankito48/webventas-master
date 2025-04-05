@@ -7,10 +7,11 @@ const oferta = require('./models/oferta');
 const {
     DB_USER,
     DB_PASSWORD,
-    DB_HOST
+    DB_HOST,
+    DB_NAME=webventas_db
 } = process.env;
 
-const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/tienda`, {
+const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`, {
     logging: false,
     native: false,
     dialect: 'postgres',
