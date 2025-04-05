@@ -13,7 +13,7 @@ export const ORDER = "ORDER";
 export const AGREGAR_AL_CARRITO = 'AGREGAR_AL_CARRITO';
 export const ELIMINAR_PRODUCTO_CARRITO = "ELIMINAR_PRODUCTO_CARRITO";
 export const VACIAR_CARRITO = "VACIAR_CARRITO";
-export const AGREGAR_FAV = " AGREGAR_FAV";
+export const AGREGAR_FAV = "AGREGAR_FAV";
 export const ELIMINAR_PRODUCTO_FAV = "ELIMINAR_PRODUCTO_FAV";
 export const CAMBIO = "CAMBIO";
 export const BORRAR_PRODUCTO = "BORRAR_PRODUCTO";
@@ -34,7 +34,7 @@ export const CERRAR_SESION = "CERRAR_SESION";
 export const CHECK_EMAIL_EXISTENCE_REQUEST = 'CHECK_EMAIL_EXISTENCE_REQUEST';
 export const CHECK_EMAIL_EXISTENCE_SUCCESS = 'CHECK_EMAIL_EXISTENCE_SUCCESS';
 export const CHECK_EMAIL_EXISTENCE_FAILURE = 'CHECK_EMAIL_EXISTENCE_FAILURE';
-export const OBTENER_INFO_USUARIO = " OBTENER_INFO_USUARIO";
+export const OBTENER_INFO_USUARIO = "OBTENER_INFO_USUARIO";
 export const GET_CLIENTES = 'GET_CLIENTES';
 export const ADMIN_LOGIN_SUCCESS = "ADMIN_LOGIN_SUCCESS";
 
@@ -361,23 +361,21 @@ export const cambios = (id, datosProducto) => {
   };
 };
 
-export const borrar = async (id) => {
-  try {
+export const borrar = (id) => {
+  return async function (dispatch) {
+    try {
+      const borrar = await axios.delete(`https://backend-webventas.onrender.com/producto/eliminar/${id}`);
 
-    const borrar = await axios.delete(`https://backend-webventas.onrender.com/producto/eliminar/${id}`)
-
-    if (borrar.status !== 200) {
-      throw new Error('Error al obtener el cliente por ID');
+      dispatch({
+        type: BORRAR_PRODUCTO,
+        payload: borrar.data,
+      });
+    } catch (error) {
+      console.error('Error al borrar producto:', error);
     }
-
-    dispatch({
-      type: BORRAR_PRODUCTO,
-      payload: borrar.data,
-    });
-  } catch (error) {
-    console.error('Error :', error);
-  }
+  };
 };
+
 
 export const addPedido = (productos) => {
 
@@ -447,7 +445,7 @@ export const checkEmailExistence = (correo) => {
     dispatch({ type: CHECK_EMAIL_EXISTENCE_REQUEST });
 
     try {
-      const response = await axios.get('/check', { params: { correo } });
+      const response = await axios.get('https://backend-webventas.onrender.com/check', { params: { correo } });
 
       // Si la solicitud fue exitosa, envía el resultado al reducer
       dispatch({
